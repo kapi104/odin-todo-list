@@ -1,11 +1,19 @@
 import './style.css'
 import loadMain from './mainPageLoader'
-import projectsFactory from './projects'
+import addNewProjectListener from './createNewproject'
+import { getProjectsFromStorage } from './localStorageControl';
 
-let projects = []
 
-projects.push(projectsFactory('test', 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quisquam quaerat quos voluptate amet consequuntur non praesentium provident, eveniet sequi autem consequatur reprehenderit? Fugit, numquam commodi unde omnis sequi dolores perspiciatis.'))
-projects.push(projectsFactory('test2', 'testowy projekt2'))
 
-document.addEventListener('DOMContentLoaded', () => loadMain(projects))
+if(localStorage.getItem('projects') === null) {
+  localStorage.setItem('projects', '[]');
+} 
 
+let projects = getProjectsFromStorage()
+
+document.addEventListener('DOMContentLoaded', () => {
+  loadMain(projects)
+  setTimeout(() => {
+    addNewProjectListener()
+  }, 1);
+})

@@ -6,6 +6,29 @@ body {
   font-family: 'Lato', sans-serif;
 }
 
+/* Firefox */
+* {
+  scrollbar-width: auto;
+  scrollbar-color: #8f54a0 #ffffff;
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 16px;
+  
+}
+
+*::-webkit-scrollbar-track {
+  background: #322653;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #8062D6;
+  border-radius: 10px;
+  border: 3px solid #322653;
+  cursor: pointer;
+}
+
 .content {
   max-width: 1000px;
   margin: 0 auto;
@@ -27,23 +50,84 @@ body {
   box-sizing: border-box;
   z-index: 0;
   overflow: hidden;
+  border-radius: 10px;
 }
 
 .project div {
   z-index: 2;
+  pointer-events: none;
 }
 
-.project::after {
+.project .slider {
   position: absolute;
   display: block;
   left: 0;
   top: 0;
   width: 100%;
   height: 100%;
-  content: '';
   background: #9288F8;
   z-index: 1;
-  transform: translateX(100%);
+  transition: transform 0.4s ease-out;
+}
+
+.sliderHidden {
+  transform: translateX(-100%);
+}
+
+.sliderShown {
+transform: translateX(0px);
+}
+
+.newProjectForm {
+  background-color: #322653;
+  color: #8062D6;
+  border: #8062D6 3px solid;
+  text-align: start;
+  box-sizing: border-box;
+}
+
+.formWrapper {
+  width: 90%;
+}
+
+.newProjectForm input, .newProjectForm textarea {
+  background-color: #322653;
+  color: #FFD2D7;
+  width: 100%;
+  border: none;
+  border-left: #8062D6 2px solid;
+  margin-bottom: 1em;
+}
+
+.newProjectForm input:focus, .newProjectForm textarea:focus {
+  outline: none;
+  max-height: 10em;
+}
+
+.nTitle {
+  font-size: 1.5em;
+}
+
+.nDescription {
+  font-size: 1rem;
+  resize: none;
+  overflow: auto;
+  max-height: 10em;
+}
+
+caption {
+  margin-bottom: 0.5em;
+}
+
+.addButton svg {
+  fill: #8062D6;
+  height: 3em;
+  pointer-events: all;
+  transition: transform 0.3s;
+}
+
+.addButton svg:hover {
+  transform: scale(1.2);
 }
 
 .pWrapper {
@@ -56,7 +140,12 @@ body {
   margin-bottom: 0.2em;
 }
 
+.pCreationDate {
+  font-size: 0.8em;
+}
+
 .pDescription {
+  font-size: 1.1em;
   width: 90%;
 }
 

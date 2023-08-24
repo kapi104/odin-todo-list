@@ -1,3 +1,5 @@
+import addProjectSliderEvent from './transitionsEvents.js'
+
 const loadTitle = () => {
   let element = document.createElement('h1');
   element.innerText = 'choose project';
@@ -5,23 +7,76 @@ const loadTitle = () => {
 }
 
 const loadProjects = (project) => {
-  return `<div class="project"><div class="pWrapper"><div class="pTitle">${project.title}</div><div class="pDescription">${project.description}</div></div><div class="pArrowSvg"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" /></svg></div></div>`
+  return `<div class="project"><div class="slider sliderHidden"></div><div class="pWrapper"><div class="pTitle">${project.title}</div><div class="pCreationDate">${project.date}</div><div class="pDescription">${project.description}</div></div><div class="pArrowSvg"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>chevron-down</title><path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" /></svg></div></div>`
 }
 
 const loadProjectsScreen = (projects) => {
-  console.log(projects);
-  let element = document.createElement('div');
+  let element = document.querySelector('.projectsContainer');
+  
   for (let i = 0; i < projects.length; i ++) {
     let child = document.createElement('div');
     child.innerHTML = loadProjects(projects[i])
+    child = addProjectSliderEvent(child)
     element.appendChild(child)
   }
+  
+  document.querySelector('.content').appendChild(element);
+}
+
+const resizeTextArea = (e) => {
+  e.target.style.height = 'auto';
+  e.target.style.height = e.target.scrollHeight + 'px';
+}
+
+const generateForm = (parent) => {
+  let titleCaption = document.createElement('caption');
+  titleCaption.innerText = 'Title:';
+  parent.appendChild(titleCaption);
+
+  let title = document.createElement('input');
+  title.classList.add('nTitle');
+  title.setAttribute('onkeydown', "return event.key != 'Enter';")
+  title.setAttribute('maxlength', 40)
+  parent.appendChild(title);
+
+  let descriotionCaption = document.createElement('caption');
+  descriotionCaption.innerText = 'Description:';
+  parent.appendChild(descriotionCaption);
+
+  let description = document.createElement('textarea');
+  description.classList.add('nDescription');
+  description.setAttribute('maxlength', 500);
+  description.addEventListener('input', resizeTextArea, false);
+  parent.appendChild(description);
+}
+
+const generateAddButton = () => {
+  let addButton = document.createElement('div');
+  addButton.classList.add('addButton');
+  addButton.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>plus</title><path d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" /></svg>'
+
+  return addButton;
+}
+
+const newProjectForm = () => {
+  let element = document.createElement('div');
+  element.classList.add('project', 'newProjectForm');
+
+  let wrapper = document.createElement('form');
+  wrapper.classList.add('formWrapper');
+
+  generateForm(wrapper)
+  element.appendChild(wrapper)
+
+  element.appendChild(generateAddButton())
+
   document.querySelector('.content').appendChild(element);
 }
 
 const loadMain = (projects) => {
   loadTitle();
   loadProjectsScreen(projects);
+  newProjectForm()
 }
 
 export default loadMain;
