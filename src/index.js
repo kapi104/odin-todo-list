@@ -1,5 +1,5 @@
 import './style.css'
-import loadMain from './mainPageLoader'
+import {loadMain} from './mainPageLoader'
 import addNewProjectListener from './createNewproject'
 import { getProjectsFromStorage } from './localStorageControl';
 

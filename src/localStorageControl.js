@@ -7,7 +7,9 @@ const setProjectsInStorage = (projects) => {
   localStorage.setItem('projects', JSON.stringify(projects))
 }
 
-localStorage.setItem('projectID', '0');
+if (localStorage.getItem('projectID') === null) {
+  localStorage.setItem('projectID', '0');
+}
 
 const increaseProjectID = () => {
   let pID = Number(localStorage.getItem('projectID'));
