@@ -7,20 +7,39 @@ const generateList = () => {
 }
 
 const newCaption = (text) => {
-  let caption = document.createElement('caption');
+  const caption = document.createElement('caption');
   caption.innerText = text;
   return caption;
 }
 
 const newInput = (type, inputClass, blockEnter, max) => {
-  let input = document.createElement('input');
+  const input = document.createElement('input');
   input.setAttribute('type', type)
   input.classList.add(inputClass);
   if (blockEnter) {
     input.setAttribute('onkeydown', "return event.key != 'Enter';")
   }
   input.setAttribute('maxlength', max)
+  return input;
 }
+
+const generatePriority = () => {
+  const priorityContainer = document.createElement('div')
+  
+  for(let i = 0; i < 3; i++) {
+    const radioContainer = document.createElement('div')
+    radioContainer.innerHTML = i
+
+    const radio = document.createElement('input');
+    radio.setAttribute('type', 'radio')
+    radio.classList.add('nPriority')
+    radio.setAttribute('name', 'priority')
+    radio.value = i
+
+    priorityContainer.appendChild(radioContainer).appendChild(radio)
+  }
+  return priorityContainer;
+} 
 
 const generateNewTodoForm = (element) => {
   const formContainer = document.createElement('div');
@@ -34,12 +53,18 @@ const generateNewTodoForm = (element) => {
     newCaption('Description:'),
     newInput('textarea', 'ndescription', false, 500),
     newCaption('Due date:'),
-    newInput('date', 'nDueDate', true, ''),
+    newInput('text', 'nDueDate', true, '40'),
+    newCaption('priority'),
+    generatePriority()
   )
 
   formContainer.appendChild(form)
 
   element.appendChild(formContainer)
+
+  const addTodoButton = document.createElement('div');
+  addTodoButton.classList.add('addTodoButton');
+  
 }
 
 const showTodoContainer = (element) => {
@@ -60,12 +85,9 @@ const generateTodoContainer = (project) => {
 const removeTodoContainer = (project) => {
   project.querySelector('.todoContainer').addEventListener('transitionend', (e) => {
     if (e.propertyName == 'max-height') {
-      console.log(e.propertyName);
       e.target.remove()
     }
-    
   })
-    
   project.querySelector('.todoContainer').classList.remove('todoShown');
 }
 
