@@ -1,3 +1,5 @@
+import { resizeTextArea } from "./mainPageLoader";
+
 const loadTodoFromLocalStorage = (ID) => {
   
 }
@@ -13,7 +15,13 @@ const newCaption = (text) => {
 }
 
 const newInput = (type, inputClass, blockEnter, max) => {
-  const input = document.createElement('input');
+  let input = '';
+  if (type === 'textarea') {
+    input = document.createElement('textarea');
+    input.addEventListener('input', resizeTextArea, false);
+  } else {
+    input = document.createElement('input');
+  }
   input.setAttribute('type', type)
   input.classList.add(inputClass);
   if (blockEnter) {
@@ -24,7 +32,8 @@ const newInput = (type, inputClass, blockEnter, max) => {
 }
 
 const generatePriority = () => {
-  const priorityContainer = document.createElement('div')
+  const priorityContainer = document.createElement('div');
+  priorityContainer.classList.add('priorityContainer');
   
   for(let i = 0; i < 3; i++) {
     const radioContainer = document.createElement('div')
@@ -45,26 +54,34 @@ const generateNewTodoForm = (element) => {
   const formContainer = document.createElement('div');
   formContainer.classList.add('newTodoForm')
 
+  const formWrapper = document.createElement('div')
+  formWrapper.classList.add('formWrapper')
+
   const form = document.createElement('form')
 
   form.append(
     newCaption('Task:'),
     newInput('text', 'nTask', true, 40),
     newCaption('Description:'),
-    newInput('textarea', 'ndescription', false, 500),
+    newInput('textarea', 'nTaskDescription', false, 500),
     newCaption('Due date:'),
     newInput('text', 'nDueDate', true, '40'),
     newCaption('priority'),
     generatePriority()
   )
 
-  formContainer.appendChild(form)
+  formWrapper.appendChild(form)
 
-  element.appendChild(formContainer)
+  formContainer.appendChild(formWrapper)
 
   const addTodoButton = document.createElement('div');
   addTodoButton.classList.add('addTodoButton');
+  addTodoButton.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>plus</title><path d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" /></svg>'
   
+  formContainer.appendChild(addTodoButton)
+
+
+  element.appendChild(formContainer)
 }
 
 const showTodoContainer = (element) => {

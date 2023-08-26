@@ -84,4 +84,4 @@ const loadMain = (projects) => {
   newProjectForm()
 }
 
-export {loadMain, loadProjects};
+export {loadMain, loadProjects, resizeTextArea};

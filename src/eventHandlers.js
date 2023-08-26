@@ -14,6 +14,10 @@ const rotateArrow = (e) => {
   e.target.querySelector('.pArrowSvg').classList.toggle('rotated');
 } 
 
+const changeBg = (e) => {
+  e.target.classList.toggle('openProjectBg')
+}
+
 const showTodo = (e) => {
   createTodoList(e.target.parentElement, e.target.dataset.id)
 }
@@ -26,6 +30,8 @@ const addProjectsEvent = (element) => {
   element.addEventListener('click', rotateArrow)
   
   element.addEventListener('click', showTodo)
+
+  element.addEventListener('click', changeBg)
 
 
   return element

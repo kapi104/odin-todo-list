@@ -52,6 +52,10 @@ body {
   border-radius: 10px;
 }
 
+.openProjectBg {
+  background-color: #9288F8;
+}
+
 .project div {
   z-index: 2;
   pointer-events: none;
@@ -105,6 +109,7 @@ transform: translateY(0px);
 
 textarea {
   cursor: auto;
+  resize: none;
 }
 
 .nTitle {
@@ -113,7 +118,6 @@ textarea {
 
 .nDescription {
   font-size: 1rem;
-  resize: none;
   overflow: auto;
   max-height: 10em;
 }
@@ -122,14 +126,14 @@ caption {
   margin-bottom: 0.5em;
 }
 
-.addButton svg {
+.addButton svg, .addTodoButton svg   {
   fill: #8062D6;
   height: 3em;
   pointer-events: all;
   transition: transform 0.3s;
 }
 
-.addButton svg:hover {
+.addButton svg:hover, .addTodoButton svg:hover{
   transform: scale(1.2);
 }
 
@@ -140,11 +144,12 @@ caption {
 
 .pTitle {
   font-size: 1.9em;
-  margin-bottom: 0.2em;
+  margin-bottom: 0.2rem;
 }
 
 .pCreationDate {
   font-size: 0.8em;
+  margin-bottom: 0.2rem;
 }
 
 .pDescription {
@@ -176,11 +181,67 @@ caption {
   overflow: hidden;
 }
 
-.todoContainer div {
+.todoContainer > div {
   margin: 1em;
 }
 
 .todoShown {
   transition: max-height 1s ease-in;
   max-height: 1000px;
+}
+
+.newTodoForm {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: start;
+  padding: 1em;
+
+  border: #FFD2D7 3px solid;
+  border-radius: 10px;
+}
+
+form caption {
+  width: 200px;
+  text-align: start;
+}
+
+.newTodoForm input, .newTodoForm textarea{
+  background-color: #8062D6;
+  color: #FFD2D7;
+  width: 100%;
+  border: none;
+  border-left: #FFD2D7 2px solid;
+  margin-bottom: 1em;
+  max-height: 10em;
+}
+
+.newTodoForm input:focus, .newTodoForm textarea:focus {
+  outline: none;
+}
+
+.newTodoForm textarea::-webkit-scrollbar-track {
+  background: #8062D6;
+}
+
+.newTodoForm textarea::-webkit-scrollbar-thumb {
+  background-color: #322653;
+  border-radius: 10px;
+  border: 3px solid #8062D6;
+}
+
+.addTodoButton svg {
+  fill: #FFD2D7;
+}
+
+.nTask {
+  font-size: 1.3em;
+}
+
+.nTaskDescription, .nDueDate {
+  font-size: 1rem;
+}
+
+.priorityContainer {
+  display: flex;
 }
