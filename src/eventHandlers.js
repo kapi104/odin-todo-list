@@ -37,5 +37,8 @@ const addProjectsEvent = (element) => {
   return element
 }
 
-export {addProjectsEvent, slideIn, slideOut, rotateArrow, showTodo}; 
+
+
+
+export {addProjectsEvent}; 
 

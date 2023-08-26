@@ -1,3 +1,5 @@
-const todoFactory = (title, description, dueDate, priority, checkList) => {
-  return {title, description, dueDate, priority, checkList, creationDate}
+const todoFactory = (task, description, dueDate, priority, checkList) => {
+  return {task, description, dueDate, priority, checkList, creationDate}
 }
+
+export default todoFactory

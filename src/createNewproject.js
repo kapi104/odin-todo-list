@@ -1,15 +1,19 @@
 import projectsFactory from "./projects";
-import {addProjectsEvent} from './eventHandlers.js'
+import { addProjectsEvent } from './eventHandlers.js'
 import { loadProjects } from "./mainPageLoader";
-import {getProjectsFromStorage, setProjectsInStorage} from "./localStorageControl";
+import { getProjectsFromStorage, setProjectsInStorage } from "./localStorageControl";
 
 import moment from "moment";
 
 const displayNewProject = (project) => {
+  let projectWrapper = document.createElement('div');
+    projectWrapper.classList.add('projectWrapper');
   let child = document.createElement('div');
+    child.classList.add('project');
     child.innerHTML = loadProjects(project)
     child = addProjectsEvent(child)
-    document.querySelector('.projectsContainer').appendChild(child);
+
+    document.querySelector('.projectsContainer').appendChild(projectWrapper).appendChild(child);
 }
 
 const checkForm = (projectTitle) => {

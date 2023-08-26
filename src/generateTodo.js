@@ -4,6 +4,66 @@ const loadTodoFromLocalStorage = (ID) => {
   
 }
 
+const generateOneTodo = (todoObject) => {
+  const todo = document.createElement('div')
+  todo.classList.add('todo');
+
+  const checkMark = document.createElement('input');
+  checkMark.classList.add('checkMark');
+  
+
+
+  const todoWrapper = document.createElement('div');
+  todoWrapper.classList.add('todoWrapper');
+
+
+
+  const header  = document.createElement('div');
+  const priority = document.createElement('div');
+  priority.classList.add('priority');
+  priority.innerHTML = '';
+  switch (todoObject.priority) {
+    case 0:
+      priority.innerHTML = '';
+      priority.classList.add('priority0')
+      break;
+  
+    case 1:
+      priority.classList.add('priority1')
+      break;
+
+    case 2:
+      priority.classList.add('priority2')
+      break;
+
+      default:
+        break;
+  }
+
+  const task = document.createElement('div');
+  task.classList.add('task');
+  task.innerText = todoObject.task;
+
+  header.append(priority, task)
+  
+
+
+  const dates = document.createElement('div')
+  dates.classList.add('dates');
+  dates.innerHTML = `${todoObject.creationDate} - ${todoObject.dueDate}`
+
+
+
+  const description = document.createElement('div');
+  description.classList.add('todoDescription')
+  description.innerHTML = todoObject.description;
+
+
+  todoWrapper.append(header, dates, description)
+
+  todo.append(checkMark, todoWrapper)
+}
+
 const generateList = () => {
 
 }
@@ -63,10 +123,10 @@ const generateNewTodoForm = (element) => {
     newCaption('Task:'),
     newInput('text', 'nTask', true, 40),
     newCaption('Description:'),
-    newInput('textarea', 'nTaskDescription', false, 500),
+    newInput('textarea', 'nTaskDescription', false, 200),
     newCaption('Due date:'),
     newInput('text', 'nDueDate', true, '40'),
-    newCaption('priority'),
+    newCaption('priority:'),
     generatePriority()
   )
 
