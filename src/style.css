@@ -168,9 +168,15 @@ caption {
 .todoContainer {
   background-color: #8062D6;
   width: calc(100% - 2em);
-  padding: 1em;
-  height: 100px;
+  padding: 0;
+  max-height: 0px;
   box-sizing: border-box;
   margin: 0 auto;
   border-radius: 0 0 10px 10px;
+  transition: all 1s;
+}
+
+.todoShown {
+  max-height: 1000px;
+  padding: 1em;
 }
