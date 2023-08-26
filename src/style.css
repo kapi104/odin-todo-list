@@ -167,16 +167,23 @@ caption {
 
 .todoContainer {
   background-color: #8062D6;
+  /* display: flex;
+  flex-direction: column; */
   width: calc(100% - 2em);
-  padding: 0;
   max-height: 0px;
   box-sizing: border-box;
   margin: 0 auto;
   border-radius: 0 0 10px 10px;
-  transition: all 1s;
+  transition: max-height 2s cubic-bezier(0, 1, 0, 1);
+  overflow: hidden;
+}
+
+.todoContainer div {
+  margin: 1em;
 }
 
 .todoShown {
+  transition: max-height 2s ease-in;
   max-height: 1000px;
-  padding: 1em;
+  
 }
