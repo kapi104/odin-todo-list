@@ -110,6 +110,7 @@ transform: translateY(0px);
 textarea {
   cursor: auto;
   resize: none;
+  font-family: 'Lato', sans-serif;
 }
 
 .nTitle {
@@ -244,4 +245,56 @@ form caption {
 
 .priorityContainer {
   display: flex;
+}
+
+.todo {
+  background-color: #9288F8;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  margin-bottom: 1em;
+}
+
+.checkMark {
+  width: 5%;
+  height: 1em;
+  margin: 1rem;
+  margin-right: 0;
+}
+
+.todoWrapper {
+  width: 95%;
+  margin: 1rem;
+  text-align: start;
+}
+
+.todoWrapper > div {
+  margin-bottom: 0.2rem;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+}
+
+.task {
+  font-size: 1.5em;
+}
+
+.dates {
+  font-size: 0.8em;
+}
+
+.priority0 {
+  color: #ffffff;
+}
+
+.priority1 {
+  color: yellow;
+}
+
+.priority2 {
+  color: red;
 }

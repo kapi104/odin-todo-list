@@ -1,6 +1,17 @@
 import todoFactory from "./todo";
 import { generateSingleTodo } from "./generateTodo";
 
+const clearForm = (project) => {
+  project.querySelector('.nTask').value = '';
+  project.querySelector('.nTaskDescription').value = '';
+  project.querySelector('.nDueDate').value = '';
+  const prio = project.querySelectorAll('[name="priority"]');
+
+  prio[0].checked = true
+  prio[1].checked = false
+  prio[2].checked = false
+}
+
 const checkForm = (task, description, dueDate, priority) => {
   if (task != '') {
     if (dueDate == '') {
@@ -16,9 +27,12 @@ const getNewTodoFormData = (project) => {
   const description = project.querySelector('.nTaskDescription').value;
   const dueDate = project.querySelector('.nDueDate').value;
   let priority
-  const prio = project.querySelectorAll('[name="priority"]').forEach(prio => {
+  const prio = project.querySelectorAll('[name="priority"]')
+  prio.forEach(prio => {
     if (prio.checked == true) priority = prio.value;
   });
+
+  clearForm(project)
 
   return checkForm(task, description, dueDate, priority)
   

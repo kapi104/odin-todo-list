@@ -22,25 +22,16 @@ const generateSingleTodo = (todoObject, project) => {
 
 
   const header  = document.createElement('div');
+  header.classList.add('header')
   const priority = document.createElement('div');
   priority.classList.add('priority');
-  priority.innerHTML = '';
-  switch (todoObject.priority) {
-    case 0:
-      priority.innerHTML = '';
-      priority.classList.add('priority0')
-      break;
-  
-    case 1:
-      priority.classList.add('priority1')
-      break;
-
-    case 2:
-      priority.classList.add('priority2')
-      break;
-
-      default:
-        break;
+  priority.innerHTML = todoObject.priority;
+  if (todoObject.priority == '0') {
+    priority.classList.add('priority0')
+  } else if (todoObject.priority == '1') {
+    priority.classList.add('priority1')
+  } else if (todoObject.priority == '2') {
+    priority.classList.add('priority2')
   }
 
   const task = document.createElement('div');
@@ -106,7 +97,8 @@ const generatePriority = () => {
 
     const radio = document.createElement('input');
     if (i === 0) {
-      radio.toggleAttribute('checked')
+      // radio.toggleAttribute('checked')
+      radio.checked = true;
     }
     radio.setAttribute('type', 'radio')
     radio.classList.add('nPriority')
@@ -166,9 +158,9 @@ const generateTodoContainer = (project) => {
 
   project.appendChild(element)
 
-  generateNewTodoForm(element)
-
   element.appendChild(todos)
+
+  generateNewTodoForm(element)
   
   showTodoContainer(element)
 }
