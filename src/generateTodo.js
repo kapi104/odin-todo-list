@@ -1,4 +1,6 @@
 import { resizeTextArea } from "./mainPageLoader";
+import {addNewTodoListener} from "./createNewTodo";
+
 
 const loadTodoFromLocalStorage = (ID) => {
   
@@ -50,7 +52,7 @@ const generateOneTodo = (todoObject) => {
 
   const dates = document.createElement('div')
   dates.classList.add('dates');
-  dates.innerHTML = `${todoObject.creationDate} - ${todoObject.dueDate}`
+  dates.innerHTML = `Creation date: ${todoObject.creationDate} Due date: ${todoObject.dueDate}`
 
 
 
@@ -100,6 +102,9 @@ const generatePriority = () => {
     radioContainer.innerHTML = i
 
     const radio = document.createElement('input');
+    if (i === 0) {
+      radio.toggleAttribute('checked')
+    }
     radio.setAttribute('type', 'radio')
     radio.classList.add('nPriority')
     radio.setAttribute('name', 'priority')
@@ -152,9 +157,15 @@ const showTodoContainer = (element) => {
 const generateTodoContainer = (project) => {
   const element = document.createElement('div');
   element.classList.add('todoContainer');
+
+  const todos = document.createElement('div')
+  todos.classList.add('todoList')
+
   project.appendChild(element)
 
   generateNewTodoForm(element)
+
+  element.appendChild(todos)
   
   showTodoContainer(element)
 }
@@ -168,7 +179,7 @@ const removeTodoContainer = (project) => {
   project.querySelector('.todoContainer').classList.remove('todoShown');
 }
 
-const containerCheck = (project, projectIDID) => {
+const containerCheck = (project, projectID) => {
   if(project.querySelector('.todoContainer') == null) {
     generateTodoContainer(project)
   } else {
@@ -178,6 +189,10 @@ const containerCheck = (project, projectIDID) => {
 
 const createTodoList = (project, projectID) => {
   containerCheck(project, projectID)
+
+  setTimeout(() => {
+    addNewTodoListener(project, projectID)
+  }, 0);
 }
 
-export default createTodoList;
+export {createTodoList};

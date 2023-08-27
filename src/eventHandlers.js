@@ -1,4 +1,4 @@
-import createTodoList from './generateTodo.js'
+import {createTodoList} from './generateTodo.js'
 
 const slideIn = (e) => {
   e.target.querySelector('.slider').classList.remove('sliderHidden');
@@ -36,8 +36,6 @@ const addProjectsEvent = (element) => {
 
   return element
 }
-
-
 
 
 export {addProjectsEvent}; 
