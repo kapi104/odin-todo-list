@@ -1,4 +1,5 @@
 import todoFactory from "./todo";
+import { generateSingleTodo } from "./generateTodo";
 
 const checkForm = (task, description, dueDate, priority) => {
   if (task != '') {
@@ -27,7 +28,11 @@ const addNewTodoListener = (project, projectID) => {
   project.querySelector('.addTodoButton').addEventListener('click', () => {
     const newTodo = getNewTodoFormData(project, projectID) 
 
-    console.log(newTodo);
+    if (newTodo != undefined) {
+      console.log(newTodo);
+      generateSingleTodo(newTodo, project)
+    }
+
   })
 }
 

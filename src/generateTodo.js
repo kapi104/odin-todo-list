@@ -6,11 +6,12 @@ const loadTodoFromLocalStorage = (ID) => {
   
 }
 
-const generateOneTodo = (todoObject) => {
+const generateSingleTodo = (todoObject, project) => {
   const todo = document.createElement('div')
   todo.classList.add('todo');
 
   const checkMark = document.createElement('input');
+  checkMark.setAttribute('type', 'checkbox')
   checkMark.classList.add('checkMark');
   
 
@@ -52,7 +53,7 @@ const generateOneTodo = (todoObject) => {
 
   const dates = document.createElement('div')
   dates.classList.add('dates');
-  dates.innerHTML = `Creation date: ${todoObject.creationDate} Due date: ${todoObject.dueDate}`
+  dates.innerHTML = `Creation date: ${todoObject.creationDate}   Due date: ${todoObject.dueDate}`
 
 
 
@@ -64,6 +65,8 @@ const generateOneTodo = (todoObject) => {
   todoWrapper.append(header, dates, description)
 
   todo.append(checkMark, todoWrapper)
+
+  project.querySelector('.todoList').appendChild(todo)
 }
 
 const generateList = () => {
@@ -195,4 +198,4 @@ const createTodoList = (project, projectID) => {
   }, 0);
 }
 
-export {createTodoList};
+export {createTodoList, generateSingleTodo};
