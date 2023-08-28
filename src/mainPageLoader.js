@@ -1,4 +1,5 @@
 import {addProjectsEvent} from './eventHandlers.js'
+import { getProjectID, getProjectsFromStorage } from './localStorageControl.js';
 
 const loadTitle = () => {
   let element = document.createElement('h1');
@@ -11,6 +12,7 @@ const loadProjects = (project) => {
 }
 
 const loadProjectsScreen = (projects) => {
+  console.log(projects);
   let element = document.querySelector('.projectsContainer');
   
   for (let i = 0; i < projects.length; i ++) {
@@ -78,9 +80,9 @@ const newProjectForm = () => {
   document.querySelector('.content').appendChild(element);
 }
 
-const loadMain = (projects) => {
+const loadMain = () => {
   loadTitle();
-  loadProjectsScreen(projects);
+  loadProjectsScreen(getProjectsFromStorage());
   newProjectForm()
 }
 

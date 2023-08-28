@@ -97,7 +97,6 @@ const generatePriority = () => {
 
     const radio = document.createElement('input');
     if (i === 0) {
-      // radio.toggleAttribute('checked')
       radio.checked = true;
     }
     radio.setAttribute('type', 'radio')

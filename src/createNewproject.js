@@ -1,7 +1,7 @@
 import projectsFactory from "./projects";
 import { addProjectsEvent } from './eventHandlers.js'
 import { loadProjects } from "./mainPageLoader";
-import { getProjectsFromStorage, setProjectsInStorage } from "./localStorageControl";
+import {setProjectsInStorage, increaseProjectID } from "./localStorageControl";
 
 import moment from "moment";
 
@@ -17,18 +17,7 @@ const displayNewProject = (project) => {
 }
 
 const checkForm = (projectTitle) => {
-  if (projectTitle != '') {
-    let projects = getProjectsFromStorage()
-
-    if (projects.forEach(p => {
-      if (p.title == projectTitle) {
-        return true;
-      }
-
-    })) {
-      return false;
-    } else {return true};
-}
+  if (projectTitle != '') return true
 }
 
 const clearForm = (...input) => {
@@ -39,15 +28,13 @@ const addProject = () => {
   const newProjectTitle = document.querySelector('.nTitle');
   const newProjectDescription = document.querySelector('.nDescription');
   if (checkForm(newProjectTitle, newProjectDescription)) {
-    let date = moment().format('D/MM/YYYY H:m');
-
-    let projects = getProjectsFromStorage();
+    let date = moment().format('D/MM/YYYY HH:mm');
 
     const newProject = projectsFactory(newProjectTitle.value, newProjectDescription.value, date)
 
-    projects.push(newProject);
+    setProjectsInStorage(newProject);
 
-    setProjectsInStorage(projects);
+    increaseProjectID()
 
     clearForm(newProjectTitle, newProjectDescription)
 

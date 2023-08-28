@@ -1,8 +1,7 @@
-import { getProjectID, increaseProjectID } from "./localStorageControl";
+import { getProjectID } from "./localStorageControl";
 
 const projectsFactory = (title, description, date) => {
   let id = getProjectID();
-  increaseProjectID();
   let todos = [];
   return {id, title, description, date, todos}
 }
