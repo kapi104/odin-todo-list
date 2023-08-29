@@ -1,7 +1,7 @@
 import { resizeTextArea } from "./mainPageLoader";
 import {addNewTodoListener} from "./createNewTodo";
 import { getProjectByID } from "./localStorageControl";
-
+import { removeProjectsEvents, addProjectsEvent } from "./eventHandlers";
 
 
 
@@ -178,12 +178,17 @@ const generateTodoContainer = (project, projectID) => {
 }
 
 const removeTodoContainer = (project) => {
+  project.querySelector('.todoContainer').classList.remove('todoShown');
+
+  project.classList.add('removeListeners');
+
+
   project.querySelector('.todoContainer').addEventListener('transitionend', (e) => {
     if (e.propertyName == 'max-height') {
       e.target.remove()
+      project.classList.remove('removeListeners')
     }
   })
-  project.querySelector('.todoContainer').classList.remove('todoShown');
 }
 
 const containerCheck = (project, projectID) => {

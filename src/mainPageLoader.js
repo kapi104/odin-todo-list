@@ -22,7 +22,7 @@ const loadProjectsScreen = (projects) => {
     child.classList.add('project');
     child.setAttribute(`data-ID`, projects[i].id)
     child.innerHTML = loadProjects(projects[i])
-    child = addProjectsEvent(child)
+    addProjectsEvent(child)
     projectWrapper.appendChild(child)
   }
   

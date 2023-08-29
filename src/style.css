@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Roboto+Mono:wght@400;500;600;700&display=swap');
 
+html {
+  overflow-y: scroll;
+}
+
 body {
   background: #322653;
   color: #FFD2D7;
@@ -297,4 +301,8 @@ form caption {
 
 .priority2 {
   color: red;
+}
+
+.removeListeners {
+  pointer-events: none;
 }

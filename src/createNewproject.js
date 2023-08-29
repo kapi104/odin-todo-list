@@ -13,7 +13,7 @@ const displayNewProject = (project) => {
     child.classList.add('project');
     child.setAttribute(`data-ID`, project.id)
     child.innerHTML = loadProjects(project)
-    child = addProjectsEvent(child)
+    addProjectsEvent(child)
     projectWrapper.appendChild(child)
 }
 
