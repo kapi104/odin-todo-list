@@ -8,12 +8,13 @@ import moment from "moment";
 const displayNewProject = (project) => {
   let projectWrapper = document.createElement('div');
     projectWrapper.classList.add('projectWrapper');
-  let child = document.createElement('div');
+    document.querySelector('.projectsContainer').appendChild(projectWrapper)
+    let child = document.createElement('div');
     child.classList.add('project');
+    child.setAttribute(`data-ID`, project.id)
     child.innerHTML = loadProjects(project)
     child = addProjectsEvent(child)
-
-    document.querySelector('.projectsContainer').appendChild(projectWrapper).appendChild(child);
+    projectWrapper.appendChild(child)
 }
 
 const checkForm = (projectTitle) => {

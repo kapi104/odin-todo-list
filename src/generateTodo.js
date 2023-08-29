@@ -1,10 +1,9 @@
 import { resizeTextArea } from "./mainPageLoader";
 import {addNewTodoListener} from "./createNewTodo";
+import { getProjectByID } from "./localStorageControl";
 
 
-const loadTodoFromLocalStorage = (ID) => {
-  
-}
+
 
 const generateSingleTodo = (todoObject, project) => {
   const todo = document.createElement('div')
@@ -60,8 +59,20 @@ const generateSingleTodo = (todoObject, project) => {
   project.querySelector('.todoList').appendChild(todo)
 }
 
-const generateList = () => {
+const loadTodoFromLocalStorage = (pID) => {
+  const project = getProjectByID(pID);
 
+  const todoArray = project.todos;
+
+  return todoArray
+}
+
+const generateList = (project, projectID) => {
+  const todos = loadTodoFromLocalStorage(projectID)
+
+  todos.forEach(t => {
+    generateSingleTodo(t, project)
+  })
 }
 
 const newCaption = (text) => {
@@ -148,7 +159,7 @@ const showTodoContainer = (element) => {
   element.classList.add('todoShown')
 }
 
-const generateTodoContainer = (project) => {
+const generateTodoContainer = (project, projectID) => {
   const element = document.createElement('div');
   element.classList.add('todoContainer');
 
@@ -158,6 +169,8 @@ const generateTodoContainer = (project) => {
   project.appendChild(element)
 
   element.appendChild(todos)
+
+  generateList(project, projectID)
 
   generateNewTodoForm(element)
   
@@ -175,7 +188,7 @@ const removeTodoContainer = (project) => {
 
 const containerCheck = (project, projectID) => {
   if(project.querySelector('.todoContainer') == null) {
-    generateTodoContainer(project)
+    generateTodoContainer(project, projectID)
   } else {
     removeTodoContainer(project)
   }

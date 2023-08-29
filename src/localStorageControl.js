@@ -53,4 +53,4 @@ const addTodoToProject = (pID, todo) => {
   localStorage.setItem(`project${pID}`, JSON.stringify(project));
 }
 
-export {getProjectsFromStorage, setProjectsInStorage, increaseProjectID, getProjectID, addTodoToProject, getTodoID, increaseTodoID}
+export {getProjectsFromStorage, setProjectsInStorage, increaseProjectID, getProjectID, addTodoToProject, getTodoID, increaseTodoID, getProjectByID}
