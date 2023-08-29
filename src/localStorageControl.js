@@ -2,9 +2,22 @@ if (localStorage.getItem('projectID') === null) {
   localStorage.setItem('projectID', '0');
 }
 
+if (localStorage.getItem('todoID') === null) {
+  localStorage.setItem('todoID', '0');
+}
 
 const getProjectID = () => {
   return localStorage.getItem('projectID')
+}
+
+const getTodoID = () => {
+  return localStorage.getItem('todoID')
+}
+
+const increaseTodoID = () => {
+  let tID = Number(getTodoID());
+  tID += 1;
+  localStorage.setItem('todoID', tID.toString())
 }
 
 const setProjectsInStorage = (project) => {
@@ -28,4 +41,16 @@ const increaseProjectID = () => {
   localStorage.setItem('projectID', pID.toString())
 }
 
-export {getProjectsFromStorage, setProjectsInStorage, increaseProjectID, getProjectID}
+const getProjectByID = (pID) => {
+  return JSON.parse(localStorage.getItem(`project${pID}`))
+}
+
+const addTodoToProject = (pID, todo) => {
+  let project = getProjectByID(pID);
+
+  project.todos.push(todo)
+
+  localStorage.setItem(`project${pID}`, JSON.stringify(project));
+}
+
+export {getProjectsFromStorage, setProjectsInStorage, increaseProjectID, getProjectID, addTodoToProject, getTodoID, increaseTodoID}

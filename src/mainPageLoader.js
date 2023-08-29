@@ -12,7 +12,6 @@ const loadProjects = (project) => {
 }
 
 const loadProjectsScreen = (projects) => {
-  console.log(projects);
   let element = document.querySelector('.projectsContainer');
   
   for (let i = 0; i < projects.length; i ++) {

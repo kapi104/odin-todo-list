@@ -1,5 +1,6 @@
 import todoFactory from "./todo";
 import { generateSingleTodo } from "./generateTodo";
+import { addTodoToProject } from "./localStorageControl";
 
 const clearForm = (project) => {
   project.querySelector('.nTask').value = '';
@@ -43,8 +44,10 @@ const addNewTodoListener = (project, projectID) => {
     const newTodo = getNewTodoFormData(project, projectID) 
 
     if (newTodo != undefined) {
-      console.log(newTodo);
-      generateSingleTodo(newTodo, project)
+
+      addTodoToProject(projectID, newTodo);
+
+      generateSingleTodo(newTodo, project);
     }
 
   })
