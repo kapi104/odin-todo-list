@@ -1,8 +1,6 @@
 import { resizeTextArea } from "./mainPageLoader";
 import {addNewTodoListener} from "./createNewTodo";
 import { getProjectByID } from "./localStorageControl";
-import { removeProjectsEvents, addProjectsEvent } from "./eventHandlers";
-
 
 
 const generateSingleTodo = (todoObject, project) => {
@@ -63,6 +61,8 @@ const loadTodoFromLocalStorage = (pID) => {
   const project = getProjectByID(pID);
 
   const todoArray = project.todos;
+
+  todoArray.sort((a, b) => a.priority - b.priority)
 
   return todoArray
 }

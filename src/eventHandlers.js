@@ -22,18 +22,6 @@ const showTodo = (e) => {
   createTodoList(e.target.parentElement, e.target.dataset.id)
 }
 
-const removeProjectsEvents = (element) => {
-  element.removeEventListener('mouseenter', slideIn)
-
-  element.removeEventListener('mouseleave', slideOut)
-
-  element.removeEventListener('click', rotateArrow)
-  
-  element.removeEventListener('click', showTodo)
-
-  element.removeEventListener('click', changeBg)
-}
-
 const addProjectsEvent = (element) => {
   element.addEventListener('mouseenter', slideIn)
 
@@ -47,5 +35,5 @@ const addProjectsEvent = (element) => {
 }
 
 
-export {addProjectsEvent, removeProjectsEvents}; 
+export {addProjectsEvent}; 
 
