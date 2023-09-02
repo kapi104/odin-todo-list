@@ -2,6 +2,9 @@ import { resizeTextArea } from "./mainPageLoader";
 import {addNewTodoListener} from "./createNewTodo";
 import { getProjectByID } from "./localStorageControl";
 
+const getParentTodo = (todo) => {
+  return todo.parentElement.parentElement.parentElement
+}
 
 const generateSingleTodo = (todoObject, project, insertPriority) => {
   const todo = document.createElement('div')
@@ -62,11 +65,27 @@ const generateSingleTodo = (todoObject, project, insertPriority) => {
     if (priorityElements.length != 0) {
       const lastElementWithPrio = priorityElements[priorityElements.length - 1];
 
-    const parentTodo = lastElementWithPrio.parentElement.parentElement.parentElement
+    const parentTodo = getParentTodo(lastElementWithPrio)
 
     parentTodo.insertAdjacentElement('afterend', todo)
     } else {
-      project.querySelector('.todoList').appendChild(todo)
+
+      if (insertPriority == 2) {
+        project.querySelector('.todoList').insertAdjacentElement('afterbegin', todo)
+      }else if (insertPriority == 1){
+        const prio2Elements = project.querySelectorAll(`.priority2`)
+        if (prio2Elements.length == 0) {
+          project.querySelector('.todoList').insertAdjacentElement('afterbegin', todo)
+        } else {
+          const lastPrio2Element = getParentTodo(prio2Elements[prio2Elements.length - 1])
+
+          lastPrio2Element.insertAdjacentElement('afterend', todo)
+        }
+
+      } else {
+        project.querySelector('.todoList').appendChild(todo)
+      }
+
     }
 
   } else {
@@ -80,6 +99,8 @@ const loadTodoFromLocalStorage = (pID) => {
   const todoArray = project.todos;
 
   todoArray.sort((a, b) => a.priority - b.priority)
+
+  todoArray.reverse()
 
   return todoArray
 }
