@@ -286,13 +286,6 @@ form caption {
   margin-bottom: 1em;
 }
 
-.checkMark {
-  width: 5%;
-  height: 1em;
-  margin: 1rem;
-  margin-right: 0;
-}
-
 .todoWrapper {
   width: 95%;
   margin: 1rem;
@@ -422,12 +415,66 @@ form caption {
   display: block;
 }
 
-/* Style the indicator (dot/circle) */
-/* .radioLabel .radioSpan:after {
-  top: 9px;
-  left: 9px;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: white;
-} */
+
+
+/* Customize the label (the container) */
+.checkboxContainer {
+  display: block;
+  position: relative;
+  padding-left: 40px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.checkboxContainer input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+.checkboxSpan {
+  position: absolute;
+  top: -4px;
+  left: 0;
+  height: 26px;
+  width: 26px;
+  margin-left: 1rem;
+  background-color: #9288F8;
+  border-radius: 15%;
+}
+
+.checkboxSpan svg {
+  fill: #FFD2D7;
+}
+
+/* On mouse-over, add a grey background color */
+.checkboxContainer:hover input ~ .checkboxSpan {
+  background-color: #8062D6;
+}
+
+/* When the checkbox is checked, add a blue background */
+.checkboxContainer input:checked ~ .checkboxSpan {
+  background-color: #322653;
+}
+
+/* Create the checkboxSpan/indicator (hidden when not checked) */
+.checkboxSpan:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkboxSpan when checked */
+.checkboxContainer input:checked ~ .checkboxSpan:after {
+  display: block;
+}
+

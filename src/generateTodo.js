@@ -10,10 +10,14 @@ const generateSingleTodo = (todoObject, project, insertPriority) => {
   const todo = document.createElement('div')
   todo.classList.add('todo');
 
+  const checkboxContainer = document.createElement('label');
+  checkboxContainer.classList.add('checkboxContainer');
   const checkMark = document.createElement('input');
   checkMark.setAttribute('type', 'checkbox')
   checkMark.classList.add('checkMark');
-  
+  const checkboxSpan = document.createElement('span');
+  checkboxSpan.classList.add('checkboxSpan');
+  checkboxSpan.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>check-bold</title><path d="M9,20.42L2.79,14.21L5.62,11.38L9,14.77L18.88,4.88L21.71,7.71L9,20.42Z" /></svg>'
 
 
   const todoWrapper = document.createElement('div');
@@ -54,10 +58,11 @@ const generateSingleTodo = (todoObject, project, insertPriority) => {
   description.classList.add('todoDescription')
   description.innerHTML = todoObject.description;
 
+  checkboxContainer.append(checkMark, checkboxSpan)
 
   todoWrapper.append(header, dates, description)
 
-  todo.append(checkMark, todoWrapper)
+  todo.append(checkboxContainer, todoWrapper)
 
   if (insertPriority != undefined) {
     const priorityElements = project.querySelectorAll(`.priority${insertPriority}`);

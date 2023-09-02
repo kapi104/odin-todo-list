@@ -18,7 +18,7 @@ const displayNewProject = (project) => {
 }
 
 const checkForm = (projectTitle) => {
-  if (projectTitle != '') return true
+  if (projectTitle != '') {return true}
 }
 
 const clearForm = (...input) => {
@@ -28,7 +28,7 @@ const clearForm = (...input) => {
 const addProject = () => {
   const newProjectTitle = document.querySelector('.nTitle');
   const newProjectDescription = document.querySelector('.nDescription');
-  if (checkForm(newProjectTitle, newProjectDescription)) {
+  if (checkForm(newProjectTitle.value)) {
     let date = moment().format('D/MM/YYYY HH:mm');
 
     const newProject = projectsFactory(newProjectTitle.value, newProjectDescription.value, date)
