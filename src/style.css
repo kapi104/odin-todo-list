@@ -1,5 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Roboto+Mono:wght@400;500;600;700&display=swap');
 
+:root {
+  --form-control-color: rebeccapurple;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
 html {
   overflow-y: scroll;
   scroll-behavior: smooth;
@@ -307,18 +317,117 @@ form caption {
   font-size: 0.8em;
 }
 
-.priority0 {
-  color: #ffffff;
+.priority {
+  display: flex;
+  align-items: flex-end;
 }
 
-.priority1 {
-  color: yellow;
+.priority svg{
+  height: 1.3em;
 }
 
-.priority2 {
-  color: red;
+.priority0 svg{
+  fill: #ffffff;
+}
+
+.priority1 svg{
+  fill: #ffffff;
+}
+
+.priority2 svg{
+  fill: gold;
+}
+
+.priorityRadio0 svg{
+  fill: #ffffff;
+}
+
+.priorityRadio1 svg{
+  fill: #ffffff;
+}
+
+.priorityRadio2 svg{
+  fill: gold;
 }
 
 .removeListeners {
   pointer-events: none;
 }
+
+.priorityContainer {
+  height: 25px;
+}
+
+/* Customize the label (the container) */
+.radioLabel {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default radio button */
+.radioLabel input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom radio button */
+.radioSpan {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  margin-bottom: 1em;
+  background-color: #8062D6;
+  border-radius: 15%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.radioSpan svg {
+  height: 0.8em;
+}
+
+/* On mouse-over, add a grey background color */
+.radioLabel:hover input ~ .radioSpan {
+  background-color: #322653;
+}
+
+/* When the radio button is checked, add a blue background */
+.radioLabel input:checked ~ .radioSpan {
+  background-color: #9288F8;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.radioSpan:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.radioLabel input:checked ~ .radioSpan:after {
+  display: block;
+}
+
+/* Style the indicator (dot/circle) */
+/* .radioLabel .radioSpan:after {
+  top: 9px;
+  left: 9px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: white;
+} */
