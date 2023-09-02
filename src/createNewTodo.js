@@ -47,7 +47,7 @@ const addNewTodoListener = (project, projectID) => {
 
       addTodoToProject(projectID, newTodo);
 
-      generateSingleTodo(newTodo, project);
+      generateSingleTodo(newTodo, project, newTodo.priority);
     }
 
   })

@@ -3,7 +3,7 @@ import {addNewTodoListener} from "./createNewTodo";
 import { getProjectByID } from "./localStorageControl";
 
 
-const generateSingleTodo = (todoObject, project) => {
+const generateSingleTodo = (todoObject, project, insertPriority) => {
   const todo = document.createElement('div')
   todo.classList.add('todo');
 
@@ -54,7 +54,17 @@ const generateSingleTodo = (todoObject, project) => {
 
   todo.append(checkMark, todoWrapper)
 
-  project.querySelector('.todoList').appendChild(todo)
+  if (insertPriority != undefined) {
+    const priorityElements = project.querySelectorAll(`.priority${insertPriority}`);
+    const lastElementWithPrio = priorityElements[priorityElements.length - 1];
+
+    const parentTodo = lastElementWithPrio.parentElement.parentElement.parentElement
+
+    parentTodo.insertAdjacentElement('afterend', todo)
+    
+  } else {
+    project.querySelector('.todoList').appendChild(todo)
+  }
 }
 
 const loadTodoFromLocalStorage = (pID) => {
