@@ -478,3 +478,25 @@ form caption {
   display: block;
 }
 
+.todoOperations {
+  display: flex;
+  gap: 0.7em;
+  margin-left: auto;
+}
+
+.todoOperations div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.2em;
+  border-radius: 15%;
+}
+
+.todoOperations div:hover {
+  background-color: #8062D6;
+}
+
+.todoOperations svg {
+  fill: #FFD2D7;
+  height: 1.5em;
+}
