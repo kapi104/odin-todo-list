@@ -53,4 +53,19 @@ const addTodoToProject = (pID, todo) => {
   localStorage.setItem(`project${pID}`, JSON.stringify(project));
 }
 
-export {getProjectsFromStorage, setProjectsInStorage, increaseProjectID, getProjectID, addTodoToProject, getTodoID, increaseTodoID, getProjectByID}
+const deleteTodoFromLocalstorage = (todoId, projectId) => {
+  let project = getProjectByID(projectId);
+  let todos = project.todos;
+  let targetTodo;
+  todos.forEach(t => {
+    if (todoId == t.id) {
+      targetTodo = t
+    }
+  })
+  todos.splice(todos.indexOf(targetTodo), 1);
+  project.todos = todos;
+
+  localStorage.setItem(`project${projectId}`, JSON.stringify(project))
+}
+
+export {getProjectsFromStorage, setProjectsInStorage, increaseProjectID, getProjectID, addTodoToProject, getTodoID, increaseTodoID, getProjectByID, deleteTodoFromLocalstorage}
