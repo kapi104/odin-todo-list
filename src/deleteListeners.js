@@ -1,4 +1,4 @@
-import { deleteTodoFromLocalstorage } from "./localStorageControl";
+import { deleteTodoFromLocalstorage, deleteProjectFromLocalstorage } from "./localStorageControl";
 
 const deleteTodoFromDOM = (element, project) => {
   const todo = element.parentElement.parentElement.parentElement.parentElement;
@@ -12,4 +12,18 @@ const addDeleteTodoListener = (element, project) => {
   element.addEventListener('click', () => deleteTodoFromDOM(element, project))
 } 
 
-export {addDeleteTodoListener}
+const deleteProjectFromDOM = (element, e) => {
+  console.log(e);
+  e.stopPropagation();
+
+  const elementParentProject = element.closest('.project')
+
+  deleteProjectFromLocalstorage(elementParentProject.dataset.id);
+  elementParentProject.remove()
+}
+
+const addDeleteProjectListener = (element) => {
+  element.addEventListener('click', (e) => deleteProjectFromDOM(element, e))
+}
+
+export {addDeleteTodoListener, addDeleteProjectListener}

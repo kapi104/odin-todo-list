@@ -177,6 +177,29 @@ caption {
   transition: transform 0.3s;
 }
 
+.project .pEditSvg, .project .pDeleteSvg {
+  width: 3.4em;
+  height: 3em;
+  padding: 0.5em;
+  margin-right: 0.2em;
+  pointer-events: all;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 15%;
+}
+
+.pEditSvg:hover, .pDeleteSvg:hover {
+  background-color: #322653;
+}
+
+.pEditSvg svg, .pDeleteSvg svg {
+  height: 1.7em;
+  
+  fill: #FFD2D7;
+}
+
 .pArrowSvg svg {
   height: 3em;
   fill: #FFD2D7;
@@ -343,7 +366,7 @@ form caption {
   fill: gold;
 }
 
-.removeListeners {
+.removeListeners > div{
   pointer-events: none;
 }
 

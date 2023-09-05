@@ -2,6 +2,7 @@ import projectsFactory from "./projects";
 import { addProjectsEvent } from './eventHandlers.js'
 import { loadProjects } from "./mainPageLoader";
 import {setProjectsInStorage, increaseProjectID } from "./localStorageControl";
+import { addDeleteProjectListener } from './deleteListeners.js';
 
 import moment from "moment";
 
@@ -14,6 +15,7 @@ const displayNewProject = (project) => {
     child.setAttribute(`data-ID`, project.id)
     child.innerHTML = loadProjects(project)
     addProjectsEvent(child)
+    addDeleteProjectListener(child.querySelector('.pDeleteSvg'));
     projectWrapper.appendChild(child)
 }
 
