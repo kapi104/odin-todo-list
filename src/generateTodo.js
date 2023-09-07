@@ -3,6 +3,7 @@ import { addNewTodoListener } from "./createNewTodo";
 import { getProjectByID } from "./localStorageControl";
 import addCheckboxEvents from "./checkOperations";
 import { addDeleteTodoListener } from "./deleteListeners";
+import { addEditListener } from "./generateEditForm";
 
 const getParentTodo = (todo) => {
   return todo.parentElement.parentElement.parentElement
@@ -37,20 +38,20 @@ const generateSingleTodo = (todoObject, project, insertPriority) => {
 
 
   const priority = document.createElement('div');
-  priority.classList.add('priority');
+  priority.classList.add('priority', 'editValue');
   if (todoObject.priority == '0') {
-    priority.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>star-outline</title><path d="M12,15.39L8.24,17.66L9.23,13.38L5.91,10.5L10.29,10.13L12,6.09L13.71,10.13L18.09,10.5L14.77,13.38L15.76,17.66M22,9.24L14.81,8.63L12,2L9.19,8.63L2,9.24L7.45,13.97L5.82,21L12,17.27L18.18,21L16.54,13.97L22,9.24Z" /></svg>';
+    priority.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>prio0</title><path d="M12,15.39L8.24,17.66L9.23,13.38L5.91,10.5L10.29,10.13L12,6.09L13.71,10.13L18.09,10.5L14.77,13.38L15.76,17.66M22,9.24L14.81,8.63L12,2L9.19,8.63L2,9.24L7.45,13.97L5.82,21L12,17.27L18.18,21L16.54,13.97L22,9.24Z" /></svg>';
     priority.classList.add('priority0')
   } else if (todoObject.priority == '1') {
-    priority.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>star</title><path d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z" /></svg>'
+    priority.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>prio1</title><path d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z" /></svg>'
     priority.classList.add('priority1')
   } else if (todoObject.priority == '2') {
-    priority.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>star</title><path d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z" /></svg>'
+    priority.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>prio2</title><path d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z" /></svg>'
     priority.classList.add('priority2')
   }
 
   const task = document.createElement('div');
-  task.classList.add('task');
+  task.classList.add('task', 'editValue');
   task.innerText = todoObject.task;
 
   
@@ -64,6 +65,7 @@ const generateSingleTodo = (todoObject, project, insertPriority) => {
 
   const editTodo = document.createElement('div');
   editTodo.classList.add('editTodo');
+  addEditListener(editTodo, false)
   editTodo.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>pencil-outline</title><path d="M14.06,9L15,9.94L5.92,19H5V18.08L14.06,9M17.66,3C17.41,3 17.15,3.1 16.96,3.29L15.13,5.12L18.88,8.87L20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18.17,3.09 17.92,3 17.66,3M14.06,6.19L3,17.25V21H6.75L17.81,9.94L14.06,6.19Z" /></svg>';
 
   operations.append(editTodo, deleteTodo)
@@ -72,13 +74,13 @@ const generateSingleTodo = (todoObject, project, insertPriority) => {
 
 
   const dates = document.createElement('div')
-  dates.classList.add('dates');
+  dates.classList.add('dates', 'editValue');
   dates.innerHTML = `Creation date: ${todoObject.creationDate}   Due date: ${todoObject.dueDate}`
 
 
 
   const description = document.createElement('div');
-  description.classList.add('todoDescription')
+  description.classList.add('todoDescription', 'editValue')
   description.innerHTML = todoObject.description;
 
 
@@ -287,4 +289,4 @@ const createTodoList = (project, projectID) => {
   }, 0);
 }
 
-export {createTodoList, generateSingleTodo};
+export {createTodoList, generateSingleTodo, generatePriority};

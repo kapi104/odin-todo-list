@@ -13,7 +13,6 @@ const addDeleteTodoListener = (element, project) => {
 } 
 
 const deleteProjectFromDOM = (element, e) => {
-  console.log(e);
   e.stopPropagation();
 
   const elementParentProject = element.closest('.project')

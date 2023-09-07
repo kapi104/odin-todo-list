@@ -47,6 +47,7 @@ body {
   max-width: 1000px;
   margin: 0 auto;
   text-align: center;
+  position: relative;
 }
 
 .content h1 {
@@ -522,4 +523,86 @@ form caption {
 .todoOperations svg {
   fill: #FFD2D7;
   height: 1.5em;
+}
+
+.invisible {
+  display: none;
+}
+
+.editForm {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  width: 600px;
+  padding: 1em;
+
+  background-color: #322653;
+  border: #8062D6 solid 3px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.editForm h2 {
+  margin-top: 0;
+  margin: 0 auto;
+}
+
+.editForm button {
+  border: none;
+  cursor: pointer;
+}
+
+.editForm label {
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+}
+
+.editForm input {
+  width: 100%;
+  background-color: #ffffff00;
+  border: none;
+  border-left: #8062D6 2px solid;
+  outline: none;
+  font-size: 1em;
+  color: #8062D6;
+}
+
+.editForm .radioSpan {
+  top: -22px;
+}
+
+.eConfirm {
+  background-color: #8062D6;
+  color: #FFD2D7;
+  padding: 0.5em;
+  font-size: 1em;
+  border-radius: 5px;
+  margin: 0 auto;
+  margin-top: 1em;
+  transition: background-color 0.2s;
+}
+
+.eConfirm:hover {
+  background-color: #9288F8;
+}
+
+.eClose {
+  width: 2.5em;
+  height: 2.5em;
+  background-color: rgba(0, 0, 0, 0);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 1em;
+  right: 1em;
+}
+
+.eClose svg {
+  height: 2em;
+  fill: #FFD2D7;
 }

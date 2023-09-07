@@ -72,4 +72,15 @@ const deleteProjectFromLocalstorage = (pId) => {
   localStorage.removeItem(`project${pId}`)
 }
 
-export {getProjectsFromStorage, setProjectsInStorage, increaseProjectID, getProjectID, addTodoToProject, getTodoID, increaseTodoID, getProjectByID, deleteTodoFromLocalstorage, deleteProjectFromLocalstorage}
+const getTodoById = (p, tId) => {
+  let todos = p.todos;
+  let targetTodo;
+  todos.forEach(t => {
+    if (tId == t.id) {
+      targetTodo = t;
+    }
+  })
+  return targetTodo;
+}
+
+export {getProjectsFromStorage, setProjectsInStorage, increaseProjectID, getProjectID, addTodoToProject, getTodoID, increaseTodoID, getProjectByID, deleteTodoFromLocalstorage, deleteProjectFromLocalstorage, getTodoById}

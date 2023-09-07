@@ -3,6 +3,7 @@ import { addProjectsEvent } from './eventHandlers.js'
 import { loadProjects } from "./mainPageLoader";
 import {setProjectsInStorage, increaseProjectID } from "./localStorageControl";
 import { addDeleteProjectListener } from './deleteListeners.js';
+import { addEditListener } from "./generateEditForm";
 
 import moment from "moment";
 
@@ -16,6 +17,7 @@ const displayNewProject = (project) => {
     child.innerHTML = loadProjects(project)
     addProjectsEvent(child)
     addDeleteProjectListener(child.querySelector('.pDeleteSvg'));
+    addEditListener(child.querySelector('.pEditSvg'), true);
     projectWrapper.appendChild(child)
 }
 
