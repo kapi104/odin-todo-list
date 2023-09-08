@@ -606,3 +606,10 @@ form caption {
   height: 2em;
   fill: #FFD2D7;
 }
+
+.editContainer {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 100%;
+}

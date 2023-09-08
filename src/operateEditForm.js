@@ -1,5 +1,5 @@
 const removeElement = (element) => {
-  const editForm = element.closest('.editForm');
+  const editForm = element.closest('.editContainer');
   editForm.remove()
 }
 
@@ -8,9 +8,14 @@ const addCloseListener = (element) => {
 }
 
 
+const getEditFormData = (element) => {
+  const editForm = element.parentElement;
 
-const addUpdateListener = (element) => {
-  element.addEventListener('click', getEditFormData)
+  const inputs = editForm.querySelectorAll('input')
 }
 
-export {addCloseListener}
+const addUpdateListener = (element) => {
+  element.addEventListener('click', () => getEditFormData(element))
+}
+
+export {addCloseListener, addUpdateListener}
