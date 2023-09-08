@@ -7,4 +7,10 @@ const addCloseListener = (element) => {
   element.addEventListener('click', () => removeElement(element))
 }
 
+
+
+const addUpdateListener = (element) => {
+  element.addEventListener('click', getEditFormData)
+}
+
 export {addCloseListener}

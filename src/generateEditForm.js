@@ -15,7 +15,9 @@ const createInput = (iClass, iValue) => {
     element.setAttribute('type', 'textarea');
     element.value = iValue
   } else if (iClass == 'priority') {
-    element = generatePriority()
+    element = generatePriority();
+    element.querySelector(`input[value="${iValue}"]`).checked = true
+    console.log(element);
   } else {
     element.setAttribute('type', 'text');
     element.value = iValue
