@@ -613,3 +613,7 @@ form caption {
   height: 100%;
   width: 100%;
 }
+
+.pEditSvg svg, .editTodo svg {
+  pointer-events: none;
+}

@@ -11,10 +11,7 @@ const createLabel = (lText) => {
 const createInput = (iClass, iValue) => {
   let element = document.createElement('input');
   element.classList.add(['e' + iClass.replace(' ', '')]);
-  if (iClass == 'Description') {
-    element.setAttribute('type', 'textarea');
-    element.value = iValue
-  } else if (iClass == 'priority') {
+  if (iClass == 'priority') {
     element = generatePriority();
     element.querySelector(`input[value="${iValue}"]`).checked = true
     console.log(element);
@@ -25,17 +22,20 @@ const createInput = (iClass, iValue) => {
   return element;
 }
 
-const generateEditForm = (inputs, labels) => {
+const generateEditForm = (inputs, labels, e, checked) => {
   const editContainer = document.createElement('div');
   editContainer.classList.add('editContainer');
 
   const editForm = document.createElement('div');
   editForm.classList.add('editForm');
+  editForm.dataset.id = e.target.dataset.id
+  
 
   if (inputs.length == 2) {
-    editForm.classList.add('editProject')
+    editForm.classList.add('editProject');
   } else if (inputs.length == 4) {
-    editForm.classList.add('editTodo')
+    editForm.classList.add('editTodo');
+    editForm.dataset.checked = checked;
   }
 
   const editHeader = document.createElement('h2');
@@ -68,6 +68,7 @@ const generateEditForm = (inputs, labels) => {
 
 const getCurrentValues = (e, element, isProject) => {
   e.stopPropagation()
+  console.log(e);
 
   let closestProject = element.closest('.projectWrapper').firstChild;
   const projectObject = getProjectByID(closestProject.dataset.id)
@@ -76,15 +77,16 @@ const getCurrentValues = (e, element, isProject) => {
   if (isProject) {
     editValues.push(projectObject.title, projectObject.description)
     const editLabels = ['Title', 'Description']
-    generateEditForm(editValues, editLabels)
+    generateEditForm(editValues, editLabels, e)
   } else {
     const todoId = element.closest('.todo').querySelector('.checkMark').dataset.id
     const currentTodo = getTodoById(projectObject, todoId);
 
-    editValues.push(currentTodo.task, currentTodo.description, currentTodo.dueDate, currentTodo.priority)
+    editValues.push(currentTodo.task, currentTodo.description, currentTodo.dueDate, currentTodo.priority);
+    const editChecked = currentTodo.checkList;
     const editLabels = ['Task', 'Description', 'Due date', 'priority'] 
     
-    generateEditForm(editValues, editLabels)
+    generateEditForm(editValues, editLabels, e, editChecked)
   }
 
 }

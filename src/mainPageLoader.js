@@ -24,6 +24,7 @@ const loadProjectsScreen = (projects) => {
     child.classList.add('project');
     child.setAttribute(`data-ID`, projects[i].id)
     child.innerHTML = loadProjects(projects[i])
+    child.querySelector('.pEditSvg').setAttribute(`data-ID`, projects[i].id);
     addProjectsEvent(child)
     projectWrapper.appendChild(child)
   }
